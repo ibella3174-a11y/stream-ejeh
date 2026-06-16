@@ -1,245 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stream | Secure Payment</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We've Moved!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-  <style>
-    :root {
-      --primary: #8a2be2;
-      --secondary: #4b0082;
-      --accent: #00f2ff;
-      --danger: #ff4d4d;
-      --bg: #0b0e14;
-      --card-bg: #161b22;
-    }
+        body {
+            background: #0f172a; /* Dark sleek background */
+            color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
 
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+        .container {
+            max-width: 600px;
+            padding: 40px 30px;
+            background: #1e293b;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+        }
 
-    body {
-      background-color: var(--bg);
-      background-image: radial-gradient(circle at top right, #1a1a2e, #0b0e14);
-      margin: 0;
-      padding: 20px;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-    }
+        .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
 
-    .container {
-      max-width: 450px;
-      width: 100%;
-    }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #38bdf8; /* Vibrant accent color */
+        }
 
-    .header {
-      text-align: center;
-      margin-bottom: 25px;
-    }
+        p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
 
-    .header img {
-      width: 120px;
-      margin-bottom: 10px;
-    }
+        .redirect-box {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed #38bdf8;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
 
-    .secure-badge {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent);
-      background: rgba(0, 242, 255, 0.1);
-      padding: 5px 15px;
-      border-radius: 20px;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-    .timer-card {
-      background: linear-gradient(145deg, #1e2530, #161b22);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
+        .countdown {
+            font-weight: bold;
+            color: #f43f5e; /* Eye-catching red/pink for the timer */
+            font-size: 1.3rem;
+        }
 
-    .timer-label { font-size: 14px; opacity: 0.8; }
-    .timer-display { 
-      font-size: 36px; 
-      font-weight: 700; 
-      color: #fff; 
-      text-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
-    }
-    .opay-warning {
-      background: rgba(255, 77, 77, 0.1);
-      border-left: 4px solid var(--danger);
-      padding: 15px;
-      border-radius: 8px;
-      font-size: 13px;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-    .account-card {
-      background: #ffffff;
-      color: #000;
-      border-radius: 16px;
-      padding: 25px;
-      position: relative;
-      overflow: hidden;
-    }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #38bdf8;
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
 
-    .account-card::before {
-      content: "";
-      position: absolute;
-      top: 0; right: 0;
-      width: 100px; height: 100px;
-      background: var(--primary);
-      opacity: 0.1;
-      border-radius: 50%;
-      transform: translate(30%, -30%);
-    }
+        .btn:hover {
+            background: #0ea5e9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+        }
 
-    .bank-name {
-      font-weight: 800;
-      font-size: 18px;
-      color: var(--secondary);
-      margin-bottom: 5px;
-    }
-
-    .acc-number-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #f0f2f5;
-      padding: 12px 15px;
-      border-radius: 10px;
-      margin: 15px 0;
-    }
-
-    .acc-number {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    .copy-icon {
-      color: var(--primary);
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    .acc-holder {
-      font-size: 14px;
-      font-weight: 600;
-      opacity: 0.7;
-    }
-    .btn-verify {
-      display: block;
-      width: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      color: white;
-      text-decoration: none;
-      text-align: center;
-      padding: 18px;
-      border-radius: 12px;
-      font-weight: 700;
-      margin-top: 25px;
-      box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
-      transition: 0.3s;
-    }
-
-    .btn-verify:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 25px rgba(138, 43, 226, 0.4);
-    }
-    #toast {
-      visibility: hidden;
-      min-width: 200px;
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      border-radius: 50px;
-      padding: 10px;
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-    }
-
-    #toast.show {
-      visibility: visible;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-
-    @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-    @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-  </style>
+        /* Simple floating animation for visual style */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="header">
-    <div class="secure-badge"><i class="fa-solid fa-shield-halved"></i> Secure Payment</div>
-    <h2 style="margin: 5px 0;">Complete Payment</h2>
-    <p style="font-size: 14px; opacity: 0.9;">To activate your account, kindly make a transfer of exactly ₦12,000 to the account below</p>
-  </div>
+    <div class="container">
+        <div class="icon">🚀</div>
+        <h1>We've Moved!</h1>
+        <p>This version of the website is no longer available. We have upgraded and shifted to a brand new home to serve you better.</p>
+        
+        <div class="redirect-box">
+            <span>Wait, redirecting you in <span id="timer" class="countdown">10</span> seconds...</span>
+        </div>
 
-  <div class="timer-card">
-    <div class="timer-label">Awaiting Payment Confirmation</div>
-    <div id="countdown" class="timer-display">10:00</div>
-  </div>
-
-  <div class="opay-warning">
-    <strong><i class="fa-solid fa-triangle-exclamation"></i> Important:</strong> 
-    Please avoid <b>OPay</b> transfers. We support Moniepoint, PalmPay, and all other commercial banks for instant activation.
-  </div>
-
-  <div class="account-card">
-    <div class="bank-name">PALMPAY</div>
-    <div class="acc-number-wrap">
-      <span class="acc-number" id="acc_no">7067738170</span>
-      <i class="fa-solid fa-copy copy-icon" onclick="copyText()"></i>
+        <div>
+            <p style="font-size: 0.9rem; margin-bottom: 10px;">Not redirecting? Click the link below:</p>
+            <a id="destination-link" href="https://nexorawebsite.com.ng" class="btn">Go to New Site</a>
+        </div>
     </div>
-    <div class="acc-holder">JULIET C.  MARTINS</div>
-    <div style="font-size: 11px; margin-top: 5px; color: #666;">STREAM OPERATING ACCOUNT</div>
-  </div>
 
-  <a href="https://t.me/m/lGU8z2FVZWY0" class="btn-verify">
-    I HAVE MADE THE TRANSFER
-  </a>
+    <script>
+        // URL configuration - Change this to your actual new website link
+        const targetURL = "https://nexorawebsite.com.ng";
+        
+        // Update the button link programmatically just in case
+        document.getElementById('destination-link').href = targetURL;
 
-  <p style="text-align: center; font-size: 12px; opacity: 0.5; margin-top: 20px;">
-    Your account will be activated immediately after Payment proof is received.
-  </p>
-</div>
+        let timeLeft = 10;
+        const timerElement = document.getElementById('timer');
 
-<div id="toast">Account Number Copied!</div>
+        // Countdown interval loop
+        const countdownInterval = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
 
-<script>
-  let time = 600;
-  const display = document.getElementById('countdown');
-
-  setInterval(() => {
-    let minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    display.innerHTML = `${minutes}:${seconds}`;
-    if (time > 0) time--;
-  }, 1000);
-  function copyText() {
-    const text = document.getElementById('acc_no').innerText;
-    navigator.clipboard.writeText(text);
-    
-    const toast = document.getElementById("toast");
-    toast.className = "show";
-    setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
-  }
-</script>
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                timerElement.textContent = "0";
+                // Perform the redirection
+                window.location.href = targetURL;
+            }
+        }, 1000);
+    </script>
 
 </body>
 </html>
